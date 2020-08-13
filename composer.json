@@ -6,7 +6,7 @@
     "type": "yii2-extension",
 
     "description": "The libs integration for the Yii framework",
-    "keywords": ["yii2", "libs", "pinyin", "helper"],
+    "keywords": ["yii2", "libs", "helper"],
     "license": "BSD-3-Clause",
     "support": {
         "issues": "https://github.com/diszz/yii2-libs/issues",
