@@ -1,6 +1,6 @@
 <?php
 
-namespace common\components;
+namespace diszz\libs;
 
 use Yii;
 use yii\base\Component;
