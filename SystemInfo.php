@@ -393,36 +393,48 @@ class SystemInfo
     }
     public function getMacAddress1()
     {
-        @exec("cat /sys/class/net/eth0/address", $return_array);
-        $temp_array = array();
-        $mac_addr = '';
-        foreach ( $return_array as $value )
+        $temp_array = [];
+        $mac_addrs = [];
+        $files = scandir('/sys/class/net');
+        foreach ($files as $f)
         {
-            if ( preg_match( "/[0-9a-f][0-9a-f][:-]"."[0-9a-f][0-9a-f][:-]"."[0-9a-f][0-9a-f][:-]"."[0-9a-f][0-9a-f][:-]"."[0-9a-f][0-9a-f][:-]"."[0-9a-f][0-9a-f]/i", $value, $temp_array ) )
+            if(in_array($f, ['.', '..']))
             {
-                $mac_addr = strtolower($temp_array[0]);
-                break;
+                continue;
+            }
+            
+            $adr = '/sys/class/net/'.$f.'/address';
+            if (file_exists($adr))
+            {
+                @exec('cat '.$adr, $return_array);
+                foreach ( $return_array as $value )
+                {
+                    if ( preg_match( "/[0-9a-f][0-9a-f][:-]"."[0-9a-f][0-9a-f][:-]"."[0-9a-f][0-9a-f][:-]"."[0-9a-f][0-9a-f][:-]"."[0-9a-f][0-9a-f][:-]"."[0-9a-f][0-9a-f]/i", $value, $temp_array ) )
+                    {
+                        $mac_addrs[] = strtolower($temp_array[0]);
+                    }
+                }
             }
         }
         unset($temp_array);
-        return $mac_addr;
+        return $mac_addrs;
     }
     
     public function getMacAddress2()
     {
         @exec("ifconfig -a", $return_array);
         $temp_array = array();
-        $mac_addr = '';
+        $mac_addrs = [];
         foreach ( $return_array as $value )
         {
              if ( preg_match( "/[0-9a-f][0-9a-f][:-]"."[0-9a-f][0-9a-f][:-]"."[0-9a-f][0-9a-f][:-]"."[0-9a-f][0-9a-f][:-]"."[0-9a-f][0-9a-f][:-]"."[0-9a-f][0-9a-f]/i", $value, $temp_array ) )
              {
-                 $mac_addr = strtolower($temp_array[0]);
+                 $mac_addrs[] = strtolower($temp_array[0]);
                  break;
              }
         }
         unset($temp_array);
-        return $mac_addr;
+        return $mac_addrs;
     }
     
     public function ByteFormat($byte = 0)
