@@ -409,7 +409,8 @@ class SystemInfo
                 @exec('cat '.$adr, $return_array);
                 foreach ( $return_array as $value )
                 {
-                    if ( preg_match( "/[0-9a-f][0-9a-f][:-]"."[0-9a-f][0-9a-f][:-]"."[0-9a-f][0-9a-f][:-]"."[0-9a-f][0-9a-f][:-]"."[0-9a-f][0-9a-f][:-]"."[0-9a-f][0-9a-f]/i", $value, $temp_array ) )
+                    if ($value != '00:00:00:00:00:00' && 
+                        preg_match( "/[0-9a-f][0-9a-f][:-]"."[0-9a-f][0-9a-f][:-]"."[0-9a-f][0-9a-f][:-]"."[0-9a-f][0-9a-f][:-]"."[0-9a-f][0-9a-f][:-]"."[0-9a-f][0-9a-f]/i", $value, $temp_array))
                     {
                         $mac_addrs[] = strtolower($temp_array[0]);
                     }
@@ -417,7 +418,7 @@ class SystemInfo
             }
         }
         unset($temp_array);
-        return $mac_addrs;
+        return array_values(array_unique($mac_addrs));
     }
     
     public function getMacAddress2()
@@ -427,14 +428,14 @@ class SystemInfo
         $mac_addrs = [];
         foreach ( $return_array as $value )
         {
-             if ( preg_match( "/[0-9a-f][0-9a-f][:-]"."[0-9a-f][0-9a-f][:-]"."[0-9a-f][0-9a-f][:-]"."[0-9a-f][0-9a-f][:-]"."[0-9a-f][0-9a-f][:-]"."[0-9a-f][0-9a-f]/i", $value, $temp_array ) )
-             {
+            if ( $value != '00:00:00:00:00:00' && 
+                preg_match( "/[0-9a-f][0-9a-f][:-]"."[0-9a-f][0-9a-f][:-]"."[0-9a-f][0-9a-f][:-]"."[0-9a-f][0-9a-f][:-]"."[0-9a-f][0-9a-f][:-]"."[0-9a-f][0-9a-f]/i", $value, $temp_array ) )
+            {
                  $mac_addrs[] = strtolower($temp_array[0]);
-                 break;
-             }
+            }
         }
         unset($temp_array);
-        return $mac_addrs;
+        return array_values(array_unique($mac_addrs));
     }
     
     public function ByteFormat($byte = 0)
