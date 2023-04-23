@@ -8,7 +8,7 @@
  * 
  */
 
-namespace diszz\libs;
+namespace codecible\libs;
 
 use Yii;
 use yii\base\Component;

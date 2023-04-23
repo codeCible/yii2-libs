@@ -1,6 +1,6 @@
 <?php 
 
-namespace diszz\libs;
+namespace codecible\libs;
 
 use yii;
 class SystemInfo

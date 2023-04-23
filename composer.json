@@ -1,6 +1,6 @@
 {
 
-    "name": "diszz/yii2-libs",
+    "name": "codecible/yii2-libs",
 
 
     "type": "yii2-extension",
@@ -9,9 +9,9 @@
     "keywords": ["yii2", "libs", "helper"],
     "license": "BSD-3-Clause",
     "support": {
-        "issues": "https://github.com/diszz/yii2-libs/issues",
-        "wiki": "https://github.com/diszz/yii2-libs/wiki",
-        "source": "https://github.com/diszz/yii2-libs"
+        "issues": "https://github.com/codecible/yii2-libs/issues",
+        "wiki": "https://github.com/codecible/yii2-libs/wiki",
+        "source": "https://github.com/codecible/yii2-libs"
     },
     "authors": [
         {
@@ -28,7 +28,7 @@
     
     "autoload": {
         "psr-4": {
-            "diszz\\libs\\": ""
+            "codecible\\libs\\": ""
         }
     }
 }

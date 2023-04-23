@@ -11,7 +11,7 @@
  * 
  */
 
-namespace diszz\libs;
+namespace codecible\libs;
 
 use Yii;
 use yii\base\Component;
@@ -42,7 +42,7 @@ use common\models\StatResultWork;
 use common\models\StatResultUser;
 use common\models\StatResultData;
 use common\models\StatResult;
-use diszz\libs\SystemInfo;
+use codecible\libs\SystemInfo;
 
 class TaskHandler
 {
